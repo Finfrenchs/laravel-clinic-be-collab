@@ -117,19 +117,21 @@ class DoctorScheduleController extends Controller
     {
         $request->validate([
             'doctor_id' => 'required',
-            'day' => 'required',
+            //'day' => 'required',
             'time' => 'required',
+            'status' => 'required',
+            'note' => 'required',
         ]);
 
         $doctorSchedule = DoctorSchedule::find($id);
         $doctorSchedule->doctor_id = $request->doctor_id;
-        $doctorSchedule->day = $request->day;
+        //$doctorSchedule->day = $request->day;
         $doctorSchedule->time = $request->time;
         $doctorSchedule->status = $request->status;
         $doctorSchedule->note = $request->note;
         $doctorSchedule->save();
 
-        return redirect()->route('doctor-schedules.index');
+        return redirect()->route('doctor-schedules.index')->with('success', 'Data berhasil diupdate');
     }
 
     //destroy

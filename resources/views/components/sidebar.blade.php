@@ -40,6 +40,12 @@
                     </li>
 
                 </ul>
+               <ul class="dropdown-menu">
+                    <li class=''>
+                        <a class="nav-link" href="{{ route('services_and_medicines.index') }}">Service And Medicine</a>
+                    </li>
+
+                </ul>
             </li>
 
     </aside>

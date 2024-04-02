@@ -32,4 +32,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('doctor-schedules', DoctorScheduleController::class);
     //patients
     Route::resource('patients', \App\Http\Controllers\PatientController::class);
+    //services_and_medicines
+    Route::resource('services_and_medicines', \App\Http\Controllers\ServiceAndMedicineController::class);
+
 });
