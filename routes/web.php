@@ -4,6 +4,7 @@ use App\Http\Controllers\DoctorController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DoctorScheduleController;
+use App\Http\Controllers\PatientScheduleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +31,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('doctors', DoctorController::class);
     //doctor-schedules
     Route::resource('doctor-schedules', DoctorScheduleController::class);
+    //patient-schedules
+    Route::resource('patient-schedules', PatientScheduleController::class);
     //patients
     Route::resource('patients', \App\Http\Controllers\PatientController::class);
     //services_and_medicines

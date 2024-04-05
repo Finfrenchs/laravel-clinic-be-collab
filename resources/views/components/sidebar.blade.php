@@ -46,6 +46,12 @@
                     </li>
 
                 </ul>
+                <ul class="dropdown-menu">
+                    <li class=''>
+                        <a class="nav-link" href="{{ route('patient-schedules.index') }}">Patient Schedule</a>
+                    </li>
+
+                </ul>
             </li>
 
     </aside>

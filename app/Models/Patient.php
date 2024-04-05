@@ -35,4 +35,10 @@ class Patient extends Model
         'relationship_name',
         'relationship_phone'
     ];
+
+    public function patientSchedules()
+    {
+        return $this->hasMany(PatientSchedule::class);
+    }
+
 }
