@@ -36,9 +36,14 @@ class Patient extends Model
         'relationship_phone'
     ];
 
-    public function patientSchedules()
+    public function patientSchedule()
     {
         return $this->hasMany(PatientSchedule::class);
+    }
+
+    public function serviceAndMedicine()
+    {
+        return $this->hasMany(ServiceAndMedicine::class);
     }
 
 }

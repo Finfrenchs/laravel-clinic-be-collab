@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\DoctorController;
 use App\Http\Controllers\Api\DoctorScheduleController;
+use App\Http\Controllers\Api\MedicalRecordsController;
 use App\Http\Controllers\Api\PatientController;
 use App\Http\Controllers\Api\PatientScheduleController;
 use App\Http\Controllers\Api\ServiceAndMedicineController;
@@ -45,3 +46,6 @@ Route::apiResource('/api-patient-schedules', PatientScheduleController::class)->
 
 //Service and Medicine
 Route::apiResource('/api-service-medicines', ServiceAndMedicineController::class)->middleware('auth:sanctum');
+
+//Medical Records
+Route::apiResource('/api-medical-records', MedicalRecordsController::class)->middleware('auth:sanctum');

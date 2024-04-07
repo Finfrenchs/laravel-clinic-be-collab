@@ -52,6 +52,12 @@
                     </li>
 
                 </ul>
+                <ul class="dropdown-menu">
+                    <li class=''>
+                        <a class="nav-link" href="{{ route('medical-records.index') }}">Medical Records</a>
+                    </li>
+
+                </ul>
             </li>
 
     </aside>

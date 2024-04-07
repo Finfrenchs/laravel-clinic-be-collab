@@ -5,25 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class PatientSchedule extends Model
+class MedicalRecords extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'patient_id',
         'doctor_id',
-        'schedule_time',
-        'complaint',
+        'patient_schedule_id',
         'status',
-        'no_antrian',
-        'payment_method',
-        'total_price',
+        'diagnosis',
+        'medical_treatments',
+        'doctor_notes'
     ];
 
-    protected $casts = [
-        'schedule_time' => 'datetime',
-    ];
-
+    // Relationships
     public function patient()
     {
         return $this->belongsTo(Patient::class);
@@ -34,8 +30,13 @@ class PatientSchedule extends Model
         return $this->belongsTo(Doctor::class);
     }
 
+    public function patientSchedule()
+    {
+        return $this->belongsTo(PatientSchedule::class);
+    }
+
     public function serviceAndMedicine()
     {
-        return $this->hasMany(ServiceAndMedicine::class);
+        return $this->belongsToMany(ServiceAndMedicine::class, 'medical_record_service', 'medical_record_id', 'service_and_medicine_id');
     }
 }

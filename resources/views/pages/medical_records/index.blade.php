@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Doctor Scheduels')
+@section('title', 'Medical Records')
 
 @push('style')
     <!-- CSS Libraries -->
@@ -11,14 +11,14 @@
     <div class="main-content">
         <section class="section">
             <div class="section-header">
-                <h1>Doctor Schedule</h1>
+                <h1>Medical Records</h1>
                 <div class="section-header-button">
-                    <a href="{{ route('doctor-schedules.create') }}" class="btn btn-primary">Add New</a>
+                    <a href="{{ route('medical-records.create') }}" class="btn btn-primary">Add Medical Records</a>
                 </div>
                 <div class="section-header-breadcrumb">
                     <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-                    <div class="breadcrumb-item"><a href="#">Doctor</a></div>
-                    <div class="breadcrumb-item">All Doctor Schedule</div>
+                    <div class="breadcrumb-item"><a href="#">Medical Records</a></div>
+                    <div class="breadcrumb-item">Medical Record List</div>
                 </div>
             </div>
             <div class="section-body">
@@ -27,9 +27,9 @@
                         @include('layouts.alert')
                     </div>
                 </div>
-                <h2 class="section-title">Doctors</h2>
+                <h2 class="section-title">Medical Records</h2>
                 <p class="section-lead">
-                    You can manage all Users, such as editing, deleting and more.
+                    You can manage all Medical Records, such as editing, deleting and more.
                 </p>
 
 
@@ -42,9 +42,9 @@
                             <div class="card-body">
 
                                 <div class="float-right">
-                                    <form method="GET" action="{{ route('doctor-schedules.index') }}">
+                                    <form method="GET" action="{{ route('medical-records.index') }}">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Search by doctor name" name="name">
+                                            <input type="text" class="form-control" placeholder="Search by patient name" name="name">
                                             <div class="input-group-append">
                                                 <button class="btn btn-primary"><i class="fas fa-search"></i></button>
                                             </div>
@@ -58,38 +58,53 @@
                                     <table class="table-striped table">
                                         <tr>
 
-                                            <th>Name</th>
-                                            <th>Day</th>
-                                            <th>Time</th>
-                                            <th>Note</th>
-
+                                            <th>Id</th>
+                                            <th>Patient Name</th>
+                                            <th>Schedule Time</th>
+                                            <th>Doctor Name</th>
+                                            <th>Complaint</th>
+                                            <th>Medical Treatment</th>
+                                            <th>Diagnosis</th>
+                                            <th>Doctor Notes</th>
                                             <th>Action</th>
                                         </tr>
-                                        @foreach ($doctorSchedules as $schedule)
+                                        @foreach ($medicalRecords as $medical)
                                             <tr>
                                                 <td>
-                                                    {{ $schedule->doctor->doctor_name }}
-                                                </td>
-                                                <td>{{ $schedule->day }}
+                                                    {{ $medical->id }}
                                                 </td>
                                                 <td>
-                                                    {{ $schedule->time }}
+                                                    {{ $medical->patient->name }}
+                                                </td>
+                                                <td>{{ $medical->patientSchedule->schedule_time }}
                                                 </td>
                                                 <td>
-                                                    {{ $schedule->note }}
+                                                    {{ $medical->doctor->doctor_name }}
+                                                </td>
+                                                <td>
+                                                    {{ $medical->patientSchedule->complaint }}
+                                                </td>
+                                                <td>
+                                                    {{ $medical->medical_treatments }}
+                                                </td>
+                                                <td>
+                                                    {{ $medical->diagnosis }}
+                                                </td>
+                                                <td>
+                                                    {{ $medical->doctor_notes }}
                                                 </td>
 
 
                                                 <td>
                                                     <div class="d-flex justify-content-center">
-                                                        <a href='{{ route('doctor-schedules.edit', $schedule->id) }}'
+                                                        <a href='{{ route('medical-records.edit', $medical->id) }}'
                                                             class="btn btn-sm btn-info btn-icon">
                                                             <i class="fas fa-edit"></i>
                                                             Edit
                                                         </a>
 
                                                         <form
-                                                            action="{{ route('doctor-schedules.destroy', $schedule->id) }}"
+                                                            action="{{ route('medical-records.destroy', $medical->id) }}"
                                                             method="POST" class="ml-2">
                                                             <input type="hidden" name="_method" value="DELETE" />
                                                             <input type="hidden" name="_token"
@@ -107,7 +122,7 @@
                                     </table>
                                 </div>
                                 <div class="float-right">
-                                    {{ $doctorSchedules->withQueryString()->links() }}
+                                    {{ $medicalRecords->withQueryString()->links() }}
                                 </div>
                             </div>
                         </div>
