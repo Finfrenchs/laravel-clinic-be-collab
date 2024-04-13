@@ -18,13 +18,13 @@ class ServiceAndMedicineSeeder extends Seeder
                 'name' => 'Paracetamol',
                 'category' => 'obat-obatan',
                 'price' => 10000,
-                'quantity' => 100,
+                'quantity' => null,
             ],
             [
                 'name' => 'Stetoskop',
                 'category' => 'alat kesehatan',
                 'price' => 150000,
-                'quantity' => 20,
+                'quantity' => null,
             ],
             [
                 'name' => 'Konsultasi Dokter Umum',

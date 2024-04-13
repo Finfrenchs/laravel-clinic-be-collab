@@ -25,7 +25,7 @@ class PatientScheduleFactory extends Factory
             },
             'schedule_time' => $this->faker->dateTimeBetween('now', '+1 year'),
             'complaint' => $this->faker->sentence,
-            'status' => $this->faker->randomElement(['waiting', 'processing', 'on hold', 'processed', 'rejected', 'completed']),
+            'status' => 'waiting',
             'no_antrian' => $this->faker->numberBetween(1, 100),
             'payment_method' => $this->faker->randomElement(['Tunai', 'QRIS']),
             'total_price' => $this->faker->numberBetween(10000, 1000000),

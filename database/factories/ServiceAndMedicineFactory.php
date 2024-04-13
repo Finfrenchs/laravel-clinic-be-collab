@@ -22,7 +22,7 @@ class ServiceAndMedicineFactory extends Factory
             'name' => $this->faker->word,
             'category' => $this->faker->randomElement($categories),
             'price' => $this->faker->numberBetween(10, 1000),
-            'quantity' => $this->faker->randomNumber(2),
+            'quantity' => 0,
         ];
     }
 }

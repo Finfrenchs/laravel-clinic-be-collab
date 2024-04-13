@@ -61,8 +61,8 @@ class PatientScheduleController extends Controller
         $nextNoAntrian = PatientSchedule::whereDate('schedule_time', $scheduleTime->toDateString())->max('no_antrian') + 1;
 
         // Tentukan nilai default untuk payment_method dan total_price
-    $paymentMethod = $request->payment_method ?? 'Tunai';
-    $totalPrice = $request->total_price ?? 0;
+        $paymentMethod = $request->payment_method ?? 'Tunai';
+        $totalPrice = $request->total_price ?? 0;
 
 
         $patientSchedule = PatientSchedule::create([
@@ -97,7 +97,56 @@ class PatientScheduleController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        // Temukan jadwal pasien yang akan diupdate
+        $patientSchedule = PatientSchedule::findOrFail($id);
+
+        // Validasi request
+        $request->validate([
+            'patient_id' => 'exists:patients,id',
+            'schedule_time' => 'string',
+            'complaint' => 'string',
+            'doctor_id' => 'exists:doctors,id',
+            'status' => 'string',
+            'payment_method' => 'string',
+            'total_price' => 'integer',
+            'no_antrian' => 'integer',
+        ]);
+
+        // Ubah data jika ada dalam request
+        if ($request->filled('patient_id')) {
+            $patientSchedule->patient_id = $request->patient_id;
+        }
+        if ($request->filled('schedule_time')) {
+            $patientSchedule->schedule_time = $request->schedule_time;
+        }
+        if ($request->filled('complaint')) {
+            $patientSchedule->complaint = $request->complaint;
+        }
+        if ($request->filled('doctor_id')) {
+            $patientSchedule->doctor_id = $request->doctor_id;
+        }
+        if ($request->filled('status')) {
+            $patientSchedule->status = $request->status;
+        }
+        if ($request->filled('payment_method')) {
+            $patientSchedule->payment_method = $request->payment_method;
+        }
+        if ($request->filled('total_price')) {
+            $patientSchedule->total_price = $request->total_price;
+        }
+        if ($request->filled('no_antrian')) {
+            $patientSchedule->no_antrian = $request->no_antrian;
+        }
+
+        // Simpan perubahan
+        $patientSchedule->save();
+
+        // Mengembalikan respons JSON
+        return response()->json([
+            'data' => $patientSchedule,
+            'message' => 'Patient schedule updated successfully',
+            'status' => 'Updated'
+        ], 200);
     }
 
     /**
