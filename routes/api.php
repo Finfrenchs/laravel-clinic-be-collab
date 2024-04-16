@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\DoctorScheduleController;
 use App\Http\Controllers\Api\MedicalRecordsController;
 use App\Http\Controllers\Api\PatientController;
 use App\Http\Controllers\Api\PatientScheduleController;
+use App\Http\Controllers\Api\PaymentDetailController;
 use App\Http\Controllers\Api\ServiceAndMedicineController;
 
 /*
@@ -50,3 +51,6 @@ Route::apiResource('/api-service-medicines', ServiceAndMedicineController::class
 //Medical Records
 Route::apiResource('/api-medical-records', MedicalRecordsController::class)->middleware('auth:sanctum');
 Route::get('/api-medical-records/services/{scheduleId}', [MedicalRecordsController::class, 'getServicesByScheduleId'])->middleware('auth:sanctum');
+
+//Payment Detail
+Route::apiResource('/api-payment-details', PaymentDetailController::class)->middleware('auth:sanctum');

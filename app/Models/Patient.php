@@ -46,4 +46,9 @@ class Patient extends Model
         return $this->hasMany(ServiceAndMedicine::class);
     }
 
+    public function paymentDetail()
+    {
+        return $this->hasMany(PaymentDetail::class);
+    }
+
 }

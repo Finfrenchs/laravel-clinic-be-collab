@@ -38,4 +38,9 @@ class PatientSchedule extends Model
     {
         return $this->hasMany(ServiceAndMedicine::class);
     }
+
+    public function paymentDetails()
+    {
+        return $this->hasMany(PaymentDetail::class);
+    }
 }
